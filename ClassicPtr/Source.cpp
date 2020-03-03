@@ -29,7 +29,7 @@ private:
 	type find(type key, element* ptr) {
 
 		if (ptr == NULL) {
-			return NULL;
+			return *(new type);
 		}
 		if (ptr->data == key) {
 			return ptr->data;
@@ -84,7 +84,8 @@ int main() {
 	temp.add(9);
 	temp.add(7);
 	temp.add(15);
-	temp.add(2);
+	temp.add(2);	
+	temp.find(23);
 
 	temp.print();
 }

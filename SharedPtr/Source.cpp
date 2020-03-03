@@ -29,7 +29,7 @@ private:
 	type find(type key, std::shared_ptr<element> ptr) {
 
 		if (ptr == nullptr) {
-			return NULL;
+			return *(new type);
 		}
 		if (ptr->data == key) {
 			return ptr->data;
