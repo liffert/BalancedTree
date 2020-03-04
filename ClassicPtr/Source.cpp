@@ -26,18 +26,18 @@ private:
 			ptr->data = data;
 		}
 	}
-	type find(type key, element* ptr) {
+	element* find(type key, element* ptr) {
 
-		if (ptr == NULL) {
-			return *(new type);
+		if (ptr == nullptr) {
+			return nullptr;
 		}
 		if (ptr->data == key) {
-			return ptr->data;
+			return ptr;
 		}
 		else if (ptr->data < key) {
 			return find(key, ptr->right);
 		}
-		else if (ptr->data > key) {
+		else {
 			return find(key, ptr->left);
 		}
 	}
@@ -69,11 +69,14 @@ public:
 	void add(type data) {
 		add(data, head);
 	}
-	type find(type key) {
+	element* find(type key) {
 		return find(key, head);
 	}
 	void print() {
 		print(head, "");
+	}
+	void print(element* ptr) {
+		print(ptr, "");
 	}
 };
 
@@ -84,8 +87,8 @@ int main() {
 	temp.add(9);
 	temp.add(7);
 	temp.add(15);
-	temp.add(2);	
-	temp.find(23);
+	temp.add(2);
+	temp.print(temp.find(23));
 
-	temp.print();
+	//temp.print();
 }

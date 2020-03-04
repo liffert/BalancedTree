@@ -26,18 +26,18 @@ private:
 			ptr->data = data;
 		}
 	}
-	type find(type key, std::shared_ptr<element> ptr) {
+	std::shared_ptr<element> find(type key, std::shared_ptr<element> ptr) {
 
 		if (ptr == nullptr) {
-			return *(new type);
+			return nullptr;
 		}
 		if (ptr->data == key) {
-			return ptr->data;
+			return ptr;
 		}
 		else if (ptr->data < key) {
 			return find(key, ptr->right);
 		}
-		else if (ptr->data > key) {
+		else {
 			return find(key, ptr->left);
 		}
 	}
@@ -54,14 +54,20 @@ private:
 
 public:
 	Tree() noexcept {}
+	Tree(type data) {
+		add(data);
+	}
 	void add(type data) {
 		add(data, head);
 	}
-	type find(type key) {
+	std::shared_ptr<element> find(type key) {
 		return find(key, head);
 	}
 	void print() {
 		print(head, "");
+	}
+	void print(std::shared_ptr<element> tree) {
+		print(tree, "");
 	}
 };
 
@@ -74,6 +80,7 @@ int main() {
 	temp.add(7);
 	temp.add(15);
 	temp.add(2);
+	temp.print(temp.find(15));
 
 	temp.print();
 }
